@@ -2,15 +2,32 @@ from tkinter import *
 from tkinter import ttk
 
 
-def select():
-    box.tag_add("hello","1.00", "1.10")
-    box.tag_config("hello", background="white")
+
+def toString(floater):
+    return str(floater)
+
+
+
+def select(cur):
+    word = cur.split(".")
+    beg = word[0]
+    end = word[1]
+    digit = int(word[1])
+    digit += 1
+    print(beg + "." + str(digit))
+    print(cur)
+    
+
+    
+    # box.tag_add("hello",cur, beg + ".0" + str(digit) )
+    box.tag_add("hello","1.4","1.6") 
+    box.tag_config("hello", underline=1)
 
 def edit(event):
-    select()
     box.config(state="disabled")  
     box.config(cursor="plus")
-    print(box.index('current'))
+    cur = box.index('current')
+    select(cur)
 def insert(event):
     box.config(state="normal")  
 root = Tk()
