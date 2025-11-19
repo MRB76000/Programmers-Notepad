@@ -12,20 +12,22 @@ def select(cur):
     word = cur.split(".")
     beg = word[0]
     end = word[1]
-    digit = int(word[1])
-    digit += 1
-    print(beg + "." + str(digit))
-    print(cur)
+    digit = int(end)
+    digit -= 1
+    if digit < 9:
+        end = "0" + str(digit)
+    else:
+        end = str(digit)
+    print(beg + "." + end)
     
 
     
     # box.tag_add("hello",cur, beg + ".0" + str(digit) )
-    box.tag_add("hello","1.4","1.6") 
+    box.tag_add("hello",beg + "." + end, cur) 
     box.tag_config("hello", underline=1)
 
 def edit(event):
     box.config(state="disabled")  
-    box.config(cursor="plus")
     cur = box.index('current')
     select(cur)
 def insert(event):
